@@ -38,6 +38,9 @@ body {
 
 textarea {
     background: #333;
+    background-repeat: no-repeat;
+    background-size: 36px;
+    background-position: calc(100% - 16px) calc(100% - 16px);
     border: 0;
     color: #fff;
     font-family: monospace;
@@ -46,12 +49,28 @@ textarea {
     width: 100%;
 }
 
+textarea:focus {
+    outline: none;
+}
+
+#css {
+    background-image: url(./assets/css3.svg);
+}
+
+#html {
+    background-image: url(./assets/html5.svg);
+}
+
+#js {
+    background-image: url(./assets/js.svg);
+}
+
 .grid {
     display: grid;
-    grid-template-rows: 1fr 10px 1fr;
-    grid-template-columns: 1fr 10px 1fr;
-    width: 100vw;
+    grid-template-rows: 1fr 2px 1fr;
+    grid-template-columns: 1fr 2px 1fr;
     height: 100vh;
+    width: 100vw;
 }
 
 .gutter-col {
