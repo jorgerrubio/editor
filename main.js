@@ -1,7 +1,19 @@
-import './style.css'
-
+import './style.css';
+import Split from 'split-grid';
 const $ = selector => document.querySelector(selector);
 const $$ = selector => document.querySelectorAll(selector);
+
+Split({
+    columnGutters: [{
+        track: 1,
+        element: $('.gutter-col-1'),
+    }],
+    rowGutters: [{
+        track: 1,
+        element: $('.gutter-row-1'),
+    }]
+});
+
 
 const $js = $('#js');
 const $css = $('#css');
