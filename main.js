@@ -40,48 +40,30 @@ Split({
     }]
 });
 
+const COMMON_EDITOR_OPTIONS = {
+    automaticLayout: true,
+    fontSize: 16,
+    theme: 'vs-dark',
+}
 
-const $js = $('#js');
-const $css = $('#css');
-const $html = $('#html');
+const { pathname } = window.location;
+const [css, html, js] = pathname.slice(1).split('%7C');
 
-const theme = 'vs-dark';
+const cssEditor = createEditor('css', css ? decode(css) : '');
+const htmlEditor = createEditor('html', html ? decode(html) : '');
+const jsEditor = createEditor('typescript', js ? decode(js) : '');
+update();
 
-const cssEditor = monaco.editor.create($css, {
-    language: 'css',
-    theme,
-    value: '',
-});
-const htmlEditor = monaco.editor.create($html, {
-    language: 'html',
-    theme,
-    value: '',
-});
-const jsEditor = monaco.editor.create($js, {
-    language: 'typescript',
-    theme,
-    value: '',
-});
-
-/* $js.addEventListener('input', update);
-$css.addEventListener('input', update);
-$html.addEventListener('input', update); */
 cssEditor.onDidChangeModelContent(update);
 htmlEditor.onDidChangeModelContent(update);
 jsEditor.onDidChangeModelContent(update);
 
-function loadPage() {
-    const { pathname } = window.location;
-    const [css, html, js] = pathname.slice(1).split('%7C');
-
-    /* $css.value = css ? decode(css) : '';
-    $html.value = html ? decode(html) : '';
-    $js.value = js ? decode(js) : ''; */
-    cssEditor.setValue(css ? decode(css) : '');
-    htmlEditor.setValue(html ? decode(html) : '');
-    jsEditor.setValue(js ? decode(js) : '');
-
-    update();
+function createEditor(type, value) {
+    return monaco.editor.create($(`#${type}`), {
+        language: type,
+        value,
+        ...COMMON_EDITOR_OPTIONS
+    });
 }
 
 function update() {
@@ -96,7 +78,7 @@ function update() {
     $('iframe').setAttribute('srcdoc', htmlView);
 }
 
-const viewPage = ({ html, css, js }) => {
+function viewPage({ html, css, js }) {
     return `
         <!doctype html>
         <html lang="en">
@@ -108,5 +90,3 @@ const viewPage = ({ html, css, js }) => {
         </html>
     `;
 }
-
-loadPage();

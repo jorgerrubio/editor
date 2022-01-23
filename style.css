@@ -62,15 +62,15 @@ textarea:focus {
 .editor::after {
     background-repeat: no-repeat;
     content: "";
-    height: 36px;
-    width: 36px;
+    height: 24px;
+    width: 24px;
     position: absolute;
     bottom: 16px;
     right: 16px;
     z-index: 1;
 }
 
-#css {
+#css::after {
     background-image: url(./assets/css3.svg);
 }
 
@@ -78,7 +78,7 @@ textarea:focus {
     background-image: url(./assets/html5.svg);
 }
 
-#js {
+#typescript::after {
     background-image: url(./assets/js.svg);
 }
 
