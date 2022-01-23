@@ -10,11 +10,13 @@ body {
     padding: 0;
     width: vw;
 }
+
 * {
     box-sizing: border-box;
 }
 
-*::after, *::before {
+*::after,
+*::before {
     box-sizing: inherit;
 }
 
@@ -53,11 +55,26 @@ textarea:focus {
     outline: none;
 }
 
+.editor {
+    position: relative;
+}
+
+.editor::after {
+    background-repeat: no-repeat;
+    content: "";
+    height: 36px;
+    width: 36px;
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    z-index: 1;
+}
+
 #css {
     background-image: url(./assets/css3.svg);
 }
 
-#html {
+#html::after {
     background-image: url(./assets/html5.svg);
 }
 
